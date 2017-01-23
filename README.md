@@ -1,3 +1,0 @@
-# myfirstgit
-samplegithub
-Another Sample
