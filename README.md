@@ -1,3 +1,1 @@
-# myfirstgit
-samplegithub
-Another Sample
+Movie Flix Project
