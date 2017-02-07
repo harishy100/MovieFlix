@@ -13,5 +13,22 @@ public interface MovieRepository {
 	public Movie updatemovie(Movie mve);
 	public void deletemovie(Movie mve);
 	public Movie findByTitle(String s);
-	public List<Movie> sortbyattribute(String attribute);
+	public String findimdbid(String id);
+	
+	// Methods for filtering and sorting the movies according to attribute type, genre, year, sort
+	public List<Movie> filterbyattributeyear(String value);
+	public List<Movie> filterbyattributetype(String value);
+	public List<Movie> filterbyattributegenre(String value);
+	public List<Movie> filterbysort(String value);
+	public List<Movie> filterbytypeyear(String value,String value1);
+	public List<Movie> filterbytypegenre(String value,String value1);
+	public List<Movie> filterbytypesortattr(String value,String value1);
+	public List<Movie> filterbyyeargenre(String value,String value1);
+	public List<Movie> filteryearsortattr(String value,String value1);
+	public List<Movie> filterbygenresortattr(String value,String value1);
+	public List<Movie> filterbytypeyeargenre(String value,String value1,String value2);
+	public List<Movie> filterbytypeyearsortattr(String value,String value1,String value2);
+	public List<Movie> filterbytypegenresortattr(String value,String value1,String value2);
+	public List<Movie> filteryeargenresortattr(String value,String value1,String value2);
+	public List<Movie> filterbytypeyeargenresortattr(String value,String value1,String value2,String value3);
 }

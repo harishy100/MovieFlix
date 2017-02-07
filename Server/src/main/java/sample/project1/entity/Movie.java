@@ -1,20 +1,37 @@
 package sample.project1.entity;
 
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+
 @Entity
 @Table
 @NamedQueries({ 
-	@NamedQuery(name = "Movie.findallMovies/TV", query = "SELECT e FROM Movie e WHERE e.type= :typ"),
-	@NamedQuery(name = "Movie.findtoptv/movie", query = "SELECT e FROM Movie e WHERE e.type=:typ ORDERBY :attribute"),
+	@NamedQuery(name = "Movie.findallMovies/Tv", query = "SELECT e FROM Movie e WHERE e.type= :typ"),
+	@NamedQuery(name = "Movie.findtoptv/movie", query = "SELECT e FROM Movie e WHERE e.type=:typ order by :attribute DESC"),
 	@NamedQuery(name = "Movie.findbytitle", query = "SELECT e FROM Movie e WHERE e.title=:name"),
-	@NamedQuery(name="Movie.sortbyattribute", query="SELECT e FROM Movie e ORDERBY :attribute")
+	@NamedQuery(name="Movie.filterbyattributeyear",query = "SELECT m FROM Movie m WHERE m.year=:value"),
+	@NamedQuery(name="Movie.filterbyattributetype",query = "SELECT m FROM Movie m WHERE m.type=:value"),
+	@NamedQuery(name="Movie.filterbyattributegenre",query = "SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value"),
+	@NamedQuery(name="Movie.filterbysort",query = "SELECT m FROM Movie m ORDER BY :value"),
+	@NamedQuery(name="Movie.filterbytypeyear",query = "SELECT m FROM Movie m WHERE m.type=:value AND m.year=:value1"),
+	@NamedQuery(name="Movie.filterbytypegenre",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value1 and m.type=:value"),
+	@NamedQuery(name="Movie.filterbytypesortattr",query="SELECT m FROM Movie m WHERE m.type=:value ORDER BY :value1"),
+	@NamedQuery(name="Movie.filterbyyeargenre",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value1 and m.year=:value"),
+	@NamedQuery(name="Movie.filterbyyearsortattr",query="SELECT m FROM Movie m WHERE m.year=:value ORDER BY :value1"),
+	@NamedQuery(name="Movie.filterbygenresortattr",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value ORDER BY :value1 DESC"),
+	@NamedQuery(name="Movie.filterbytypeyeargenre",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value2 and m.type=:value AND m.year=:value1"),
+	@NamedQuery(name="Movie.filterbytypeyearsortattr",query="SELECT m FROM Movie m WHERE m.type=:value AND m.year=:value1 ORDER BY :value2 DESC"),
+	@NamedQuery(name="Movie.filterbytypegenresortattr",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value1 and m.type=:value ORDER BY :value2 DESC"),
+	@NamedQuery(name="Movie.filterbyyeargenresortattr",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value1 and m.year=:value ORDER BY :value2 DESC"),
+	@NamedQuery(name="Movie.filterbytypeyeargenresortattr",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value1 AND m.type=:value AND m.year=:value2 ORDER BY :value3 DESC"),
 })
 public class Movie {
 
@@ -37,46 +54,38 @@ public class Movie {
 	private String imdbVotes;
 	private String imdbId;
 	private String type;
-	private String Actor;
 	private String Writer;
-	private String Genre;
-	
-	
 
-	public String getActor() {
-		return Actor;
+	@ManyToMany
+	private List<Genre> genres;
+	
+	@ManyToMany
+	private List<Actor> actors;
+
+	public List<Genre> getGenres() {
+		return this.genres;
 	}
 
-
-
-	public void setActor(String actor) {
-		Actor = actor;
+		public void setGenres(List<Genre> genres) {
+		this.genres = genres;
 	}
 
+	public List<Actor> getActors() {
+		return actors;
+	}
 
-
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+	
 	public String getWriter() {
 		return Writer;
 	}
 
-
-
 	public void setWriter(String writer) {
 		Writer = writer;
 	}
-
-
-
-	public String getGenre() {
-		return Genre;
-	}
-
-
-
-	public void setGenre(String genre) {
-		Genre = genre;
-	}
-
+	
 
 
 	public Movie() {
@@ -273,6 +282,16 @@ public class Movie {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Movie [id=" + id + ", title=" + title + ", year=" + year + ", rated=" + rated + ", director=" + director
+				+ ", released=" + released + ", plot=" + plot + ", language=" + language + ", country=" + country
+				+ ", awards=" + awards + ", poster=" + poster + ", metaScore=" + metaScore + ", imdbRating="
+				+ imdbRating + ", imdbVotes=" + imdbVotes + ", imdbId=" + imdbId + ", type=" + type + ", Writer="
+				+ Writer + ", genres=" + genres + ", actors=" + actors + "]";
 	}
 	
 	

@@ -18,11 +18,11 @@ public class UserServiceImpl implements UserService{
 	private UserRepository repository;
 	@Override
 	public User create(User usr) {
-		// TODO Auto-generated method stub
-		//User usr1= repository.findByEmail(usr.getEmail());
-		//if(usr1!=null){
-		//	throw new BadRequestException("Employee aready exists");
-		//}
+
+		User usr1= repository.findByEmail(usr.getEmail());
+		if(usr1!=null){
+			throw new BadRequestException("User aready exists");
+		}
 		return repository.create(usr);
 	} 
 }

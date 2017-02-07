@@ -13,5 +13,6 @@ public interface MovieService {
 	public Movie updatemovie(Movie mve);
 	public void deletemovie(Movie mve);
 	public Movie findmovie(String id);
-	public List<Movie> sortbyattribute(String attribute);
+	public List<Movie> filterbyattribute(Map<String,String> reqparam);
+	public String findimdbid(String id);
 }
