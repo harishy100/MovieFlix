@@ -19,7 +19,7 @@ import javax.persistence.Table;
 	@NamedQuery(name = "Movie.findbytitle", query = "SELECT e FROM Movie e WHERE e.title=:name"),
 	@NamedQuery(name="Movie.filterbyattributeyear",query = "SELECT m FROM Movie m WHERE m.year=:value"),
 	@NamedQuery(name="Movie.filterbyattributetype",query = "SELECT m FROM Movie m WHERE m.type=:value"),
-	@NamedQuery(name="Movie.filterbyattributegenre",query = "SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value"),
+	@NamedQuery(name="Movie.filterbyattributegenre",query = "SELECT m FROM Movie m left join m.genres g where g.genrename=:value"),
 	@NamedQuery(name="Movie.filterbysort",query = "SELECT m FROM Movie m ORDER BY :value"),
 	@NamedQuery(name="Movie.filterbytypeyear",query = "SELECT m FROM Movie m WHERE m.type=:value AND m.year=:value1"),
 	@NamedQuery(name="Movie.filterbytypegenre",query="SELECT m FROM Movie m join m.genres Genre where Genre.genrename=:value1 and m.type=:value"),
@@ -54,13 +54,16 @@ public class Movie {
 	private String imdbVotes;
 	private String imdbId;
 	private String type;
-	private String Writer;
+	
 
 	@ManyToMany
 	private List<Genre> genres;
 	
 	@ManyToMany
 	private List<Actor> actors;
+	
+	@ManyToMany
+	private List<Writer> writers;
 
 	public List<Genre> getGenres() {
 		return this.genres;
@@ -77,22 +80,18 @@ public class Movie {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
-	
-	public String getWriter() {
-		return Writer;
+
+	public List<Writer> getWriters() {
+		return writers;
 	}
 
-	public void setWriter(String writer) {
-		Writer = writer;
+	public void setWriters(List<Writer> writers) {
+		this.writers = writers;
 	}
-	
-
 
 	public Movie() {
 		this.id = UUID.randomUUID().toString();
 	}
-
-
 
 	public String getId() {
 		return id;
@@ -291,7 +290,7 @@ public class Movie {
 				+ ", released=" + released + ", plot=" + plot + ", language=" + language + ", country=" + country
 				+ ", awards=" + awards + ", poster=" + poster + ", metaScore=" + metaScore + ", imdbRating="
 				+ imdbRating + ", imdbVotes=" + imdbVotes + ", imdbId=" + imdbId + ", type=" + type + ", Writer="
-				+ Writer + ", genres=" + genres + ", actors=" + actors + "]";
+				+ writers + ", genres=" + genres + ", actors=" + actors + "]";
 	}
 	
 	

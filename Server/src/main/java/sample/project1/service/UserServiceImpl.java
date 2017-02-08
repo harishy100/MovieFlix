@@ -24,5 +24,21 @@ public class UserServiceImpl implements UserService{
 			throw new BadRequestException("User aready exists");
 		}
 		return repository.create(usr);
+	}
+	@Override
+	public Boolean login(String email, String password) {
+		User usr=repository.findByEmail(email);
+		if(usr==null){
+			return false;
+		}
+		else{
+			if(usr.getPassword().equals(password)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+	
 	} 
 }

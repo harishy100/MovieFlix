@@ -69,7 +69,10 @@ public class MovieServiceImpl implements MovieService{
 	
 	@Override
 	public Movie findmovie(String id) {
-		repository.findByTitle(id);
+		Movie m=repository.findByTitle(id);
+		if(m==null){
+			throw new EntityNotFoundException("Movie doesnt exist");
+		}
 		return null;
 	}
 
@@ -89,7 +92,8 @@ public class MovieServiceImpl implements MovieService{
 			return repository.filterbyattributeyear(year);
 		}
 		else if(type==null && year==null && genre!=null && sortattr==null){
-			return repository.filterbyattributetype(genre);
+			System.err.println("right place");
+			return repository.filterbyattributegenre(genre);
 		}
 		else if(type==null && year==null && genre==null && sortattr!=null){
 			return repository.filterbysort(sortattr);
@@ -132,8 +136,12 @@ public class MovieServiceImpl implements MovieService{
 
 	@Override
 	public String findimdbid(String id) {
-		repository.findimdbid(id);
-		return null;
+		String s=repository.findimdbid(id);
+		if(s==null){
+			throw new EntityNotFoundException("imdb title doesnt exist");
+		}
+		return s;
+		
 	}
 	
 }

@@ -25,29 +25,15 @@ public class UserController {
 
 		@Autowired
 		private UserService service;
-		@RequestMapping(method=RequestMethod.GET)
 		
-		public String findall(){
-		return "hifi";
+		@RequestMapping(method=RequestMethod.POST, value= "login/{email/password}")
+		public Boolean login( @PathVariable("email" ) String email, @PathVariable String password){
+			return service.login(email,password);
 		}
-	//	@RequestMapping(method=RequestMethod.GET, value= "{id}")
-		//public User findone( @PathVariable("id" ) String id){
-			//return service.findone(id);
-		//}
 		@RequestMapping(method=RequestMethod.POST)
 		public User create(@RequestBody User usr){
 			return service.create(usr);	
 		}
-		
-	//	@RequestMapping(method=RequestMethod.PUT, value= "{id}")
-		//public Employee update(String id, Employee emp){
-			//return service.update(emp, id);
-		//}
-		
-		//@RequestMapping(method=RequestMethod.DELETE, value= "{id}")
-	//	public void delete(String id){
-		//	service.delete(id);
-			//}
 		
 	}
 	

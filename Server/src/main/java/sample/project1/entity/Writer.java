@@ -14,38 +14,20 @@ import javax.persistence.Table;
 public class Writer {
 
 	@Id
-	private String id;
-	
-	private String firstname;
-	private String lastname;
+	private String writername;
 
 	public Writer() {
-		this.id = UUID.randomUUID().toString();
+		this.writername="";
 	}
 
-	public String getId() {
-		return id;
+	public String getWritername() {
+		return writername;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setWritername(String writername) {
+		this.writername = writername;
 	}
 
-	public String getFirstname() {
-		return firstname;
-	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	
 	
 }
