@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    <title>MovieFlix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body background="http://vignette4.wikia.nocookie.net/zigochen/images/1/14/Black-screen_2511_1.jpg/revision/latest?cb=20121106043000">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"> <p><font size="7">MovieFlix</font></p></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">TV</a></li>
+                <li><a href="#">Toprated</a></li>
+                <li class="active"><a href="#">Create Movie Title</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="container_demo">
+    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+    <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1>Create Movie Title</h1>
+            <form (ngSubmit)="onsubmit()" #userForm="ngForm">
+                <p>
+                    <label > Movie title</label> <input #inputName="ngModel" id="username" name="username"
+                                                        required="required" type="text"
+                                                        [(ngModel)]="movie.title" />
+                </p>
+                <p>
+                    <label > Year </label> <input #inputName="ngModel" id="password" name="password"
+                                                  required="required" type="number" placeholder="eg. 1994" [(ngModel)]="movie.year" min="1920" max="2017"/>
+                </p>
+                <p>
+                    <label > Rated</label> <input #inputName="ngModel" id="rating" name="rating"
+                                                  required="required" type="text" placeholder="eg. PG-13 or R"
+                                                  [(ngModel)]="movie.rated" />
+                </p>
+                <p>
+                    <label > Release Date</label> <input #inputName="ngModel" id="release" name="release"
+                                                         required="required" type="date" placeholder="eg. 1998-01-09"
+                                                         [(ngModel)]="movie.releasedate" />
+                </p>
+                <p>
+                    <label > Genre </label> <input id="genre" name="genre"
+                                                   type="text" placeholder="eg. Drama"
+                                                   [(ngModel)]="movie.genres" />
+                </p>
+                <p>
+                    <label > Director </label> <input #inputName="ngModel" id="director" name="director"
+                                                      type="text" placeholder="eg. Steven Spielberg"
+                                                      [(ngModel)]="movie.director" />
+                </p>
+                <p>
+                    <label > Writer </label> <input #inputName="ngModel" id="writer" name="writer"
+                                                    type="text" placeholder="eg. Matt Damon, Ben Affleck"
+                                                    [(ngModel)]="movie.writer" />
+                </p>
+                <p>
+                    <label > Actors </label> <input #inputName="ngModel" id="Actor" name="actor"
+                                                    type="text" placeholder="eg. Michael Boon, Ross Wilberg"
+                                                    [(ngModel)]="movie.actors" />
+                </p>
+                <p>
+                    <label > Plot</label> <input #inputName="ngModel" id="plot" name="plot"
+                                                 type="text" placeholder="eg. William was killed by the person"
+                                                 [(ngModel)]="movie.plot"/>
+                </p>
+                <p>
+                    <label > Language </label> <input #inputName="ngModel" id="language" name="language"
+                                                      type="text" placeholder="eg. French"
+                                                      [(ngModel)]="movie.language" />
+                </p>
+                <p>
+                    <label > Country</label> <input #inputName="ngModel" id="country" name="country"
+                                                    type="text" placeholder="eg. Japan"
+                                                    [(ngModel)]="movie.country" />
+                </p>
+                <p>
+                    <label > Awards</label> <input #inputName="ngModel" id="award" name="award"
+                                                   type="text" placeholder="eg. Won 5 Oscars,..."
+                                                   [(ngModel)]="movie.awards" />
+                </p>
+                <p>
+                    <label > Poster</label> <input #inputName="ngModel" id="poster" name="poster"
+                                                   type="text" placeholder="eg. http://ia-media.com/....."
+                                                   [(ngModel)]="movie.poster" />
+                </p>
+                <p>
+                    <label > MetaScore</label> <input #inputName="ngModel" id="metascore" name="metascore"
+                                                      type="number" placeholder="eg. 70"
+                                                      [(ngModel)]="movie.metascore" min="1" max="100"/>
+                </p>
+                <p>
+                    <label > ImdbRating </label> <input #inputName="ngModel" id="imdbrating" name="imdbrating"
+                                                        type="text" placeholder="eg. 8.9"
+                                                        [(ngModel)]="movie.imdbrating" />
+                </p>
+                <p>
+                    <label > ImdbVotes</label> <input #inputName="ngModel" id="imdbvotes" name="imdbvotes"
+                                                      type="text" placeholder="eg. 56789"
+                                                      [(ngModel)]="movie.imdbvotes" />
+                </p>
+                <p>
+                    <label > ImdbId</label> <input #inputName="ngModel" id="imdbid" name="imdbid"
+                                                   type="text" placeholder="eg. tt0119217"
+                                                   [(ngModel)]="movie.imdbid" />
+                </p>
+                <p>
+                    <label > Type of Category</label> <br> <input #inputName="ngModel" type="radio"  name="chooseone" [(ngModel)]="movie.type"><label> TV</label><br> <input type="radio" name="chooseone" value="Movie"><label > Movie</label><br>
+
+
+                </p>
+
+                <p class="login button">
+                    <input type="submit" value="Create Title" />
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
