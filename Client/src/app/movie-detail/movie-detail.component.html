@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MovieFlix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/style3.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/als_style.css" />
+
+    <style>
+        #image{border-style:groove;border-color: #111111;background-color: #111111}
+        #border{border-style:groove;border-color:#111111;background-color: #111111}
+        #border1{border-style:groove;border-color: #111111;background-color: #302e2e}
+        .boxed{padding-top:20px;background:#1B1B1B;border:1px solid #475361;color:#CCCCCC;margin-bottom:3px;overflow:hidden;}.thumb,.display-name{line-height:0;vertical-align:middle;}.thumb{display:inline-block;margin-right:5px;}h2.title_font{border-bottom:3px solid #373737;font-size:1.5em;margin-bottom:15px;padding:0 0 5px;font-weight:bold;}.als-container{position:relative;width:100%;margin:0px auto;z-index:0;}.als-viewport{position:relative;overflow:hidden;margin:0px auto;}.als-wrapper{position:relative;list-style:none;}.als-item{position:relative;display:block;text-align:center;cursor:pointer;float:left;width: 130px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border: 1px solid gray;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    margin: 0;}.als-prev,.als-next{position:absolute;cursor:pointer;clear:both;}#demo3{margin:40px auto;}#demo3 .als-item{margin:0px 5px;padding:4px 0px;min-height:120px;min-width:100px;text-align:center;}#demo3 .als-item img{display:block;margin:0 auto;vertical-align:middle;}#demo3 .als-prev,#demo3 .als-next{top:70px;background:#fff;padding:5px;}#demo3 .als-prev{left:250px;}#demo3 .als-next{right:250px;}.top-alpha{background:url(../images/banner_bg.jpg);min-height:25px;}.top-alpha h1{display:inline-block;}.top-alpha li{line-height:25px;vertical-align:middle;display:inline-block;font-weight:bolder;}.top-alpha li a{padding:4px;vertical-align:middle;}.top-alpha li a:hover{border:#FF9900 1px solid;background:#FFFF99;padding:3px;color:#FF0000;}
+    </style>
+</head>
+<body background="http://vignette4.wikia.nocookie.net/zigochen/images/1/14/Black-screen_2511_1.jpg/revision/latest?cb=20121106043000">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#"> <p><font size="7">MovieFlix</font></p></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">TV</a></li>
+                <li><a href="#">Toprated</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="col-sm-2 text-left">
+</div>
+<div class="col-sm-10" text-left id="border1" >
+    <h2 class="title_font"> <a href="#"> <span class="thumb"> <img class="movie_watch_img" height="22" width="22" src="http://viooz.vc/images_1/pixel.gif"> </span> <span>Collateral Beauty </span> </a> </h2>
+    <div class="col-sm-6" id="image">
+        <img [src]="movie.poster" height="260" width="420" >
+    </div>
+    <div class="col-sm-6" id="border">
+        <div class="boxed">
+            <div class="infos_sub">
+                Directed By:{{movie.director}}<br/>
+                Release Date:  {{movie.released}}<br />
+                Language : {{movie.language}}
+                <br />
+                Genre: <table><tr *ngFor="let g of movie.genres"> <td>{{g.genrename}} ,</td></tr></table> <br />
+                Stars: <table><tr *ngFor="let a of movie.actors"> <td>{{a.actorname}} ,</td></tr></table> <br />
+                IMDB Link: <b><button (click)="imdblink()"> IMDBPage </button></b><br/>
+                IMDB Rating : {{movie.imdbRating}} <br/>
+
+                <hr>
+                <p>
+                    Plot : {{movie.plot}}
+                </p>
+                <hr>
+                <p>
+                    <button (click)="viewcomments "> View Comments </button>
+                </p>
+                <input #inputName="NgModel" type="number" min="1" max="10" placeholder="eg.5" style="width: 500px" style="height:200px" placeholder="Write a Comment"  (NgModel)]="value1" />
+                <button (click)="post()"> Rate the movie </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container text-center">
+
+    <h3 > <font color="white">Comments </font></h3>
+    <br>
+    <div class="Column">
+        <div class="col-sm-10">
+            <input #inputName="NgModel" type="textarea" style="width: 500px" style="height:200px" placeholder="Write a Comment"  (NgModel)]="value" value=""/>
+            <button (click)="postcomment()"> Post Comment </button>
+
+        </div>
+        <div class="col-sm-10">
+
+            <p>Project 2</p>
+        </div>
+
+
+    </div>
+    <hr>
+</div>
+
+
+</body>
+</html>

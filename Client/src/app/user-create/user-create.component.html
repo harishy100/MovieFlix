@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MovieFlix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style3.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+</head>
+<body background="http://vignette4.wikia.nocookie.net/zigochen/images/1/14/Black-screen_2511_1.jpg/revision/latest?cb=20121106043000">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:63342/weboutlet/Homepage.html?_ijt=c57vfshpmrst4d8csog9rie04e"> <p><font size="7">MovieFlix</font></p></a>
+        </div>
+    </div>
+</nav>
+
+
+<div id="container_demo">
+    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+    <a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+                                                    id="tologin"></a>
+    <div id="wrapper">
+        <div id="register" class="animate form">
+            <form (ngSubmit)="onsubmit()" #userForm="ngForm">
+                <h1>Sign up</h1>
+                <p>
+                    <label for="usernamesignup" class="uname" data-icon="u"> Your username</label> <input #inputName="ngModel" id="usernamesignup" name="usernamesignup"
+                                                                                                          [(ngModel)]="movie.username" required="required" type="text" placeholder="mysuperusername690" />
+                </p>
+                <p>
+                    <label for="emailsignup" class="youmail" data-icon="e">
+                        Your email</label> <input #inputName="ngModel" id="emailsignup" name="emailsignup" [(ngModel)]="user.email"
+                                                  required="required" type="email"
+                                                  placeholder="mysupermail@mail.com" />
+                </p>
+                <p>
+                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your
+                        password </label> <input #inputName="ngModel" id="passwordsignup" name="passwordsignup" [(ngModel)]="user.password"
+                                                 required="required" type="password" placeholder="eg. X8df!90EO" />
+                </p>
+                <p>
+                    <label for="passwordsignup_confirm" class="youpasswd"
+                           data-icon="p">Please confirm your password </label> <input #inputName="ngModel"
+                                                                                      [(ngModel)]="user.passwordconfirm" id="passwordsignup_confirm" name="passwordsignup_confirm"
+                        required="required" type="password" placeholder="eg. X8df!90EO" />
+                </p>
+                <p class="signin button">
+                    <input type="submit" value="Sign up" />
+                </p>
+                <p class="change_link" align="center">
+                    <a href="Home_Page_Final2.jsp" class="to_register" >Back to Home</a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    Already a member ? <a href="#tologin" class="to_register">Login </a>
+                </p>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
